@@ -221,7 +221,9 @@ function engine (opts) {
         // Send data to Nightscout.
         report_to_nightscout(ns_config, function (err, response, body) {
           console.log("Nightscout upload", 'error', err, 'status', response.statusCode, body);
-
+          if (readENV('TWILIO_SID')==null) {
+            console.log("Twilio is not configured. do nothing.");
+          }
         });
       }
     }
